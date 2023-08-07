@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__container">
+        <div class="header__link">CRUD-додаток</div>
+      </div>
+    </header>
+
+    
+    <main class="row row-cols-2 container-fluid position-absolute main">
+      <div class="col col-6 position-relative colomn">
+        <div 
+        class="d-flex flex-row align-items-center justify-content-between"
+        style="margin: 1%;">
+          <h4 style="margin-left: 1%;">Список користувачів</h4>
+          <div class="bg-user-box" id="add-user">
+            <img src="./icons/add.png" style="width: 100%;"></img>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center flex-column" id="user-list">
+          <!-- <!-- <div class="user-box" id="user1">
+            
+            <div class="user-info d-flex align-items-center" id="heading1">
+              <h5>ПІБ користувача</h5>
+            </div>
+    
+            <div class="d-flex">
+              <div class="bg-user-box" id="more-order1">
+                <img src="./icons/more.png" style="width: 100%;"></img>
+              </div>
+      
+              <div class="bg-user-box" id="delete-order1">
+                <img src="./icons/edit.png" style="width: 100%;"></img>
+              </div>
+      
+              <div class="bg-user-box" id="delete-order1">
+                <img src="./icons/delete.png" style="width: 100%;"></img>
+              </div>
+            </div>
+    
+          </div> -->
+
+          <!-- <div class="user-box" id="user2">
+            
+            <div class="user-info d-flex align-items-center" id="heading2">
+              <h5>ПІБ користувача</h5>
+            </div>
+    
+            <div class="d-flex">
+              <div class="bg-user-box" id="more-order1">
+                <img src="./icons/more.png" style="width: 100%;"></img>
+              </div>
+      
+              <div class="bg-user-box" id="delete-order1">
+                <img src="./icons/edit.png" style="width: 100%;"></img>
+              </div>
+      
+              <div class="bg-user-box" id="delete-order1">
+                <img src="./icons/delete.png" style="width: 100%;"></img>
+              </div>
+            </div>
+    
+          </div> -->
+        </div>
+      </div>
+
+      <div class="col col-6 colomn d-flex align-items-center justify-content-center overflow-hidden">
+        <form class="form-control user-form" hidden>
+          <div class="row small d-flex flex-column gy-2">
+            <div class="col">
+              <h3 id="form-heading">Немає</h3>
+              <div></div>
+            </div>
+            <div class="col">
+                  <label for="surname" class="form-label">Прізвище</label>
+                  <input type="text" id="surname"  class="form-control"/>
+                  <span class="d-none"></span>
+            </div>
+            <div class="col">
+              <label for="name" class="form-label">Ім'я</label>
+              <input type="text" id="name" class="form-control"/>
+              <span class="d-none"></span>
+            </div>
+            
+            <div class="col">
+              <label for="age" class="form-label">Вік</label>
+              <input type="number" name="age" id="age" class="form-control" value="0"/>
+              <span class="d-none"></span>
+            </div>
+            
+            <div class="col">
+              <label for="location" class="form-label">Місце проживання</label>
+              <input type="text" name="city" id="location" class="form-control">
+              <span class="d-none"></span>
+            </div>
+    
+            <div class="col">
+              <label for="gender" class="form-label">Стать</label><br>
+              <div class="form-check form-check-inline">
+                <label for="male">Чоловік</label>
+                <input type="radio" name="gender" id="male" class="form-check-input">
+              </div>
+              <div class="form-check form-check-inline">
+                <label for="female">Жінка</label>
+                <input type="radio" name="gender" id="female" class="form-check-input">
+              </div>
+              <br>
+              <span class="d-none"></span>
+            </div>
+            
+            <button type="button" class="btn btn-outline-light">Додати</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+    
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
+
+<!-- 
+    <div class="container-fluid d-flex align-items-center justify-content-center Form-container">
+            <form class="form-control Form d-flex flex-column">
+                <div class="row">
+                    <h3>OLLOLO</h3>
+                </div>
+                
+                <div class="row d-flex flex-column gy-1">
+                    <div class="col">
+                        <div class="row row-cols-2">
+                            <label for="name" class="form-label">Name</label>
+                            <label for="surname" class="form-label">Surname</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control"/> 
+                            <input type="text" id="surname" class="form-control"/>   
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="email" class="form-label ">Email</label>
+                        <input type="email" id="email" class="form-control"/>
+                    </div>
+                    <div class="col">
+
+                    </div>
+
+                </div>
+                <br>
+                
+
+                
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div> 
+    -->
+
+    <!-- <div class="user-form">
+      <form>
+        <div class="row small d-flex flex-column gy-2">
+          
+          <div class="col">
+            <div class="row row-cols-2 gx-0">
+                <label for="surname" class="form-label">Прізвище</label>
+                <label for="name" class="form-label">Ім'я</label>
+            </div>
+            
+            <div class="input-group">
+              <input type="text" id="surname"  class="form-control"/>
+              <input type="text" id="name" class="form-control"/>    
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row row-cols-2 gx-0">
+                <label for="age" class="form-label">Вік</label>
+                <label for="city" class="form-label">Місце проживання</label>
+            </div>
+            
+            <div class="input-group">
+              <input type="text" name="age" id="age" class="form-control"/>
+              <input type="text" name="city" id="city" class="form-control">
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="gender" class="form-label">Стать</label><br>
+            <div class="form-check form-check-inline">
+              <label for="male">Чоловіча</label>
+              <input type="radio" name="gender" id="male" class="form-check-input">
+            </div>
+            <div class="form-check  form-check-inline">
+              <label for="female">Жіноча</label>
+              <input type="radio" name="gender" id="female" class="form-check-input">
+            </div>
+          </div>
+          
+        </div>
+      </form>
+      
+    </div> -->
