@@ -199,7 +199,6 @@ function validator() {
     const $form = document.forms[0];
     const list = [];
     let isSelected = false;
-    let isValidated = true;
     for (let i = 0; i < $form.elements.length - 1; i++) {
         const element = $form.elements[i];
         if(i == 4 || i == 5) {
@@ -209,24 +208,27 @@ function validator() {
             } else {
                 if(isSelected){
                     showError(element, 'Потрібно вибрати стать');
-                    isValidated = false;
                 } else {
                     isSelected = true;
                 }
             }
         } else if(i == 2) {
-            isValidated = checkNumber(element);
+            let isValidated = checkNumber(element);
             if(isValidated) {
                 list.push(element.value);
             }
         } else {
-            isValidated = checkLength(element, 3, 15);
+            let isValidated = checkLength(element, 3, 15);
             if(isValidated) {
                 list.push(element.value);
             }
         }
     }
-    return [isValidated, list];
+    if(list.length == 5){
+        return [true, list];
+    } else {
+        return [false];
+    }
 }
 
 function parseToLocalStorage(list) {
