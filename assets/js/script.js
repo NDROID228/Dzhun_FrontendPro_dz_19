@@ -16,7 +16,6 @@ function createUserBox(list) {
     userInfo.setAttribute('id', 'heading-'+id);
     $userBox.appendChild(userInfo);
     const $headingBox = $userBox.querySelector('#heading-'+id);
-    console.log($headingBox);
 
     const heading = document.createElement('h5');
     heading.textContent = list.name + ' ' + list.surname;
@@ -59,7 +58,7 @@ function createUserBox(list) {
     imgDelete.setAttribute('src', "./icons/delete.png");
     imgDelete.setAttribute('style', "width: 100%;");
     $buttonDelete.appendChild(imgDelete);
-    // $buttonDelete.addEventListener('click', );
+    $buttonDelete.addEventListener('click', buttonDeleteEvent);
 }
 
 function getUserById(id) {
@@ -183,6 +182,63 @@ function buttonEditEvent(event) {
     showOrHideForm('Редагувати дані користувача ' + list.name);
 }
 
+function buttonDeleteEvent(event) {
+    document.forms[0].setAttribute('hidden', '');
+    clearForm();
+    
+    let userBox = event.target;
+    while(userBox.className !== 'user-box'){
+        userBox = userBox.parentElement;
+    }
+    const userId = userBox.id;
+    showDeleteAlert(userId);
+}
+
+function showDeleteAlert(userId) {
+    const $deleteAlert = document.querySelector('#delete-alert');
+    $deleteAlert.className = 'delete-question-box';
+
+    const textBoxId = 'heading-' + userId;
+    const $textBox = document.querySelector('#'+textBoxId);
+    const headingText = $textBox.textContent;
+    console.log(headingText);
+    document.querySelector('#heading-delete').innerHTML = 'Видалити користувача <br>' + headingText + '?';
+
+
+    const $cancelAlert = document.querySelector('#cancel-alert');
+    $cancelAlert.addEventListener('click', hideDeleteAlert);
+    const $confirmAlert = document.querySelector('#confirm-alert');
+    $confirmAlert.setAttribute('userId', userId);
+    $confirmAlert.addEventListener('click', confirmAlertEvent);
+}
+
+function confirmAlertEvent(event) {
+    const userId = event.target.getAttribute('userId') ;
+    console.log(userId);
+    const $userBox = document.querySelector('#'+userId);
+    $userBox.remove();
+    const currentData = JSON.parse(localStorage.getItem('data'));
+    for (let i = 0; i < currentData.length; i++) {
+        const element = currentData[i];
+        if (element.id == userId) {
+            currentData.splice(i, 1);
+            localStorage.setItem('data', JSON.stringify(currentData));
+            break;
+        }
+    }
+    displayData();
+    hideDeleteAlert();
+}
+
+function hideDeleteAlert() {
+    const $deleteAlert = document.querySelector('#delete-alert');
+    $deleteAlert.className = 'delete-question-box-hidden';
+
+    const $confirmAlert = document.querySelector('#confirm-alert');
+    $confirmAlert.removeAttribute('userId');
+    $confirmAlert.removeEventListener('click', confirmAlertEvent);
+}
+
 
 
 // form validation
@@ -248,6 +304,7 @@ function parseToLocalStorage(list) {
     localStorage.setItem('data', JSON.stringify(readData));
     localStorage.setItem('count', count + 1);
     displayData();
+    showOrHideForm('');
     clearForm();
     return reList;
 }
@@ -343,6 +400,7 @@ function clearForm() {
 
     for (let i = 0; i < $form.elements.length - 1; i++) {
         const element = $form.elements[i];
+        element.disabled = false;
         if(i == 4 || i == 5) {
             element.checked = false;
             showSuccess(element);
@@ -366,8 +424,13 @@ function clearForm() {
 
     displayData();
 
+    //adding form submit button event
     const $form = document.forms[0];
     $form.elements[$form.elements.length - 1].addEventListener('click', formValidation);
+    
+    //adding cancel-alert button event
+    const $cancelAlert = document.querySelector('#cancel-alert');
+    $cancelAlert.addEventListener('click', hideDeleteAlert);
 
     const $buttonAdd = document.querySelector('#add-user');
     $buttonAdd.addEventListener('click', function(event) {

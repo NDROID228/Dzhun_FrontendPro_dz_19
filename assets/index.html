@@ -24,6 +24,18 @@
 
     
     <main class="row row-cols-2 container-fluid position-absolute main">
+      <div class="delete-question-box-hidden" id="delete-alert">
+        <div class="row delete-question d-flex align-items-center justify-content-center">
+          <div class="col">
+            <h4 class="text-center heading" id="heading-delete">Видалити користувача ...?</h4>
+            <h5 class="text-center heading">Ці дані буде неможливо повернути</h5>
+            <div class="col d-flex justify-content-around">
+              <button class="btn btn-success" id="cancel-alert">Залишити</button>
+              <button class="btn btn-danger"  id="confirm-alert">Видалити</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col col-6 position-relative colomn">
         <div 
         class="d-flex flex-row align-items-center justify-content-between"
@@ -35,7 +47,7 @@
         </div>
 
         <div class="d-flex align-items-center flex-column" id="user-list">
-          <!-- <!-- <div class="user-box" id="user1">
+          <!-- <div class="user-box" id="user1">
             
             <div class="user-info d-flex align-items-center" id="heading1">
               <h5>ПІБ користувача</h5>

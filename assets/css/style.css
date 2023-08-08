@@ -111,4 +111,34 @@
     padding: 5px 10px;
   }
 
-  
+  .delete-question-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background-color: #e6e8d5;
+    opacity: 1;
+  }
+
+  .delete-question-box-hidden {
+    display: none;
+  }
+
+  .delete-question {
+    padding: 1vh;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 10px; 
+    opacity: 1;
+    background-color: rgb(57, 94, 45);
+    color: #c3c6a9;
+  }
+
+  .heading {
+    margin-bottom: 7vh;
+  }
