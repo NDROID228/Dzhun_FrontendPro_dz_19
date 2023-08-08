@@ -1,23 +1,7 @@
-function initLocalStorage(){
-    localStorage.setItem('count', '1');
-    localStorage.setItem('data', JSON.stringify(data));
-}
-
-//display info on site from localStorage
-function displayData() {
-    clearUserList();
-    const currentData = JSON.parse(localStorage.getItem('data'));
-    currentData.forEach(element => {
-        createUserBox(element);
-    });
-}
-
 // user box
 const $userList = document.querySelector('#user-list');
 
-function clearUserList() {
-    $userList.innerHTML = '';
-}
+
 
 function createUserBox(list) {
     const id = list.id;
@@ -346,15 +330,14 @@ function clearForm() {
     const $form = document.forms[0];
     document.querySelector('#form-heading').textContent = "Немає";
 
-    let btn = $form.elements[$form.elements.length - 1];
-    btn.remove();
+    $form.elements[$form.elements.length - 1].remove();
+
     const newBtn = document.createElement('button');
     newBtn.setAttribute('type', 'button');
     newBtn.setAttribute('class', 'btn btn-outline-light');
     newBtn.textContent = 'Додати';
-    $form.appendChild(newBtn);
-    btn = $form.elements[$form.elements.length - 1];
-    btn.addEventListener('click', formValidation);
+    document.querySelector('#submit-box').appendChild(newBtn);
+    $form.elements[$form.elements.length - 1].addEventListener('click', formValidation);
 
     for (let i = 0; i < $form.elements.length - 1; i++) {
         const element = $form.elements[i];
@@ -390,3 +373,21 @@ function clearForm() {
         showOrHideForm('Додати користувача');
     });
 })();
+
+function clearUserList() {
+    document.querySelector('#user-list').innerHTML = '';
+}
+
+function initLocalStorage(){
+    localStorage.setItem('count', '1');
+    localStorage.setItem('data', JSON.stringify(data));
+}
+
+//display info on site from localStorage
+function displayData() {
+    clearUserList();
+    const currentData = JSON.parse(localStorage.getItem('data'));
+    currentData.forEach(element => {
+        createUserBox(element);
+    });
+}
