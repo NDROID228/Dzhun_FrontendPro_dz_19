@@ -412,9 +412,7 @@ function clearForm() {
 
 // main
 (function () {
-  if (localStorage.length == 0) {
-    initLocalStorage();
-  }
+  initLocalStorage();
 
   displayData();
 
@@ -441,8 +439,16 @@ function clearUserList() {
 }
 
 function initLocalStorage() {
-  localStorage.setItem("count", "1");
-  localStorage.setItem("data", JSON.stringify(data));
+  const localCount = localStorage.getItem("count");
+  const localData = localStorage.getItem("data");
+  if(localStorage.length == 0){
+    localStorage.setItem("count", "1");
+    localStorage.setItem("data", JSON.stringify(data));
+  } else if(localCount === null || localData === null) {
+    localStorage.clear();
+    localStorage.setItem("count", "1");
+    localStorage.setItem("data", JSON.stringify(data));
+  }
 }
 
 //display info on site from localStorage
